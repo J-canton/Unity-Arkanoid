@@ -62,10 +62,16 @@ public class GameManager : MonoBehaviour{
     public void EnabledMenus(){
         if(currentState == GameStatus.menu){
             menuCanvas.enabled = true;
+            gameCanvas.enabled = false;
+            gameOverCanvas.enabled = false; 
         }else if(currentState == GameStatus.inTheGame){
             menuCanvas.enabled = false;
+            gameCanvas.enabled = true;
+            gameOverCanvas.enabled = false;
         }else if(currentState == GameStatus.gameOver){
             menuCanvas.enabled = false;
+            gameCanvas.enabled = false;
+            gameOverCanvas.enabled = true;
         }
     }
 }
