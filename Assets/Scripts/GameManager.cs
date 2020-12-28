@@ -1,77 +1,136 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public enum GameStatus {menu, inTheGame, gameOver};
-
-public class GameManager : MonoBehaviour{
+public class GameManager : MonoBehaviour
+{
     public static GameManager sharedInstance;
+    public enum GameState { menu, inTheGame, lostLife ,gameOver, winTheGame };
 
-    public int lifes = 0;
-    public GameStatus currentState;
-    public Canvas menuCanvas;
-    public Canvas gameCanvas;
-    public Canvas gameOverCanvas;
+    private int _initLifes = 3;
+    private int _totalScore = 0;
+    private int _highScore = 0;
+    private int _totalBlocks = 0;
+
+    public GameObject ball;
+    public GameState _currentGameState;
+
+    public int Lifes
+    {
+        get
+        {
+            return _initLifes;
+        }
+        set
+        {
+            _initLifes = value;
+        }
+    }
+    public int Score
+    {
+        get
+        {
+            return _totalScore;
+        }
+        set
+        {
+            _totalScore = value;
+        }
+    }
+    public GameState CurrentState
+    {
+        get
+        {
+            return _currentGameState;
+        }
+        set
+        {
+            _currentGameState = value;
+        }
+
+    }
 
 
-    void Awake(){
+    void Awake()
+    {
         sharedInstance = this;
     }
-    // Start is called before the first frame update
-    void Start(){
-        currentState = GameStatus.menu;
+
+    void Start()
+    {
+        InitLifes();
+        InitScore();
+        InitTotalBlocksInGame();
+        InitLevel();
     }
 
-    // Update is called once per frame
-    void Update(){}
-
-    public void StartGame(){
-        OnChangeState(GameStatus.inTheGame);
-        EnabledMenus();
+    ///<summary>
+    ///Set de _currentState to GameState.inTheGame
+    /// </summary>
+    void InitLevel()
+    {
+        CurrentState = GameState.inTheGame;
+        PlayerController.InitPlayerPosition();
+        BallController.InitBallPosition();
+        BallController.ShowBall();
     }
 
-    public void EndGame(){
-        OnChangeState(GameStatus.gameOver);
-        EnabledMenus();
+    ///<SUMARY>
+    /// Starts lifes at the start of the level
+    /// </SUMARY>
+    void InitLifes()
+    {
+        Debug.Log(Lifes);
+        UIManager.uIManagerInstance.UpdateLifes(Lifes);
     }
 
-    public void BackToMenu(){
-        OnChangeState(GameStatus.menu);
-        EnabledMenus();
-    }
-
-
-    public void OnChangeState(GameStatus otherGameState){
-        switch(otherGameState){
-            case GameStatus.menu:
-                currentState = otherGameState;
-                break;
-            case GameStatus.inTheGame:
-                currentState = otherGameState;
-                break;
-            case GameStatus.gameOver:
-                currentState = otherGameState;
-                break;    
-            default:
-                currentState = otherGameState;
-                break;    
-                
+    /// <summary>
+    /// Update UI Lifes and add lifes;
+    /// </summary>
+    /// <param name="value"></param>
+    public void UpdateLifes(int value)
+    {
+        Lifes -= value;
+        if (Lifes > 0)
+        {
+            UIManager.uIManagerInstance.UpdateLifes(Lifes);
         }
+        else
+        {
+            CurrentState = GameState.gameOver;
+            UIManager.uIManagerInstance.ChangeScene("Game Over");
+        }
+
     }
 
-    public void EnabledMenus(){
-        if(currentState == GameStatus.menu){
-            menuCanvas.enabled = true;
-            gameCanvas.enabled = false;
-            gameOverCanvas.enabled = false; 
-        }else if(currentState == GameStatus.inTheGame){
-            menuCanvas.enabled = false;
-            gameCanvas.enabled = true;
-            gameOverCanvas.enabled = false;
-        }else if(currentState == GameStatus.gameOver){
-            menuCanvas.enabled = false;
-            gameCanvas.enabled = false;
-            gameOverCanvas.enabled = true;
-        }
+    ///<SUMARY>
+    /// Starts score at the start of the level
+    /// </SUMARY>
+    void InitScore()
+    {
+        UIManager.uIManagerInstance.UpdateScore(Score);
+    }
+
+    /// <summary>
+    /// Update UI score and add blockValue to the _totalScore
+    /// </summary>
+    /// <param name="value"></param>
+    public void UpdateScore(int value)
+    {
+        Score += value;
+        UIManager.uIManagerInstance.UpdateScore(Score);
+    }
+
+    /// <summary>
+    /// Count total blocks of this scene
+    /// </summary>
+    void InitTotalBlocksInGame()
+    {
+        _totalBlocks = GameObject.FindGameObjectsWithTag("Block").Length;
+    }
+
+    public void StartGame()
+    {
+        InitLevel();
+        UIManager.uIManagerInstance.HideButton(UIManager.uIManagerInstance.playAgainBtn);
+
     }
 }
