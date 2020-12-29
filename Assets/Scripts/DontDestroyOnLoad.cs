@@ -2,14 +2,17 @@
 
 public class DontDestroyOnLoad : MonoBehaviour
 {
+    private bool created = false;
     void Awake()
     {
-        GameObject[] objs = GameObject.FindGameObjectsWithTag("GameManager");
-        if (objs.Length > 1)
+        if (!created)
+        {
+            DontDestroyOnLoad(this.gameObject);
+            created = true;
+        }
+        else
         {
             Destroy(this.gameObject);
         }
-
-        DontDestroyOnLoad(this.gameObject);
     }
 }

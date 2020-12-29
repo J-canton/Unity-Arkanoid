@@ -8,9 +8,9 @@ public class KillZone : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        GetComponent<AudioSource>().Play();
+        GameManager.gameManagerInstance.UpdateState(GameManager.GameState.lostLife);
         BallController.HideBall();
-        GameManager.sharedInstance.UpdateLifes(_lifeLostValue);
-        GameManager.sharedInstance.CurrentState = GameManager.GameState.lostLife;
-        UIManager.uIManagerInstance.EnableButton(UIManager.uIManagerInstance.playAgainBtn);
+        GameManager.gameManagerInstance.UpdateLifes(GameStats.Lifes - _lifeLostValue);
     }
 }
