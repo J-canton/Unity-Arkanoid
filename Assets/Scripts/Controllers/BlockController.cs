@@ -8,8 +8,13 @@ public class BlockController : MonoBehaviour{
     /// </summary>
     /// <param name="collisionInfo"></param>
    void OnCollisionEnter2D(Collision2D collisionInfo){
-        GetComponent<AudioSource>().Play();
+        PlaySound();
         GameManager.gameManagerInstance.UpdateScore(blockValue);
-        Destroy(gameObject);       
+        Destroy(gameObject,0.09f);       
+    }
+
+    void PlaySound()
+    {
+        GetComponent<AudioSource>().Play();
     }
 }

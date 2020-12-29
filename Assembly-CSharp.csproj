@@ -62,12 +62,13 @@
     <Compile Include="Assets/Scripts/KillZone.cs" />
     <Compile Include="Assets/Scripts/Controllers/PlayerController.cs" />
     <Compile Include="Assets/Scripts/GameManager.cs" />
-    <Compile Include="Assets/Scripts/Controllers/LevelController.cs" />
-    <Compile Include="Assets/Scripts/Controllers/TitleController.cs" />
+    <Compile Include="Assets/Scripts/Controllers/ScenesControllers/LevelController.cs" />
+    <Compile Include="Assets/Scripts/Controllers/ScenesControllers/TitleController.cs" />
     <Compile Include="Assets/Scripts/Controllers/BallController.cs" />
     <Compile Include="Assets/Scripts/UIManager.cs" />
     <Compile Include="Assets/Scripts/Controllers/BlockController.cs" />
-    <Compile Include="Assets/Scripts/Controllers/GameOverController.cs" />
+    <Compile Include="Assets/Scripts/Controllers/ScenesControllers/GameOverController.cs" />
+    <Compile Include="Assets/Scripts/Controllers/ScenesControllers/WinController.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />
