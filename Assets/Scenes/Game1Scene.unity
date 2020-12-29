@@ -9516,6 +9516,8 @@ MonoBehaviour:
   scoreText: {fileID: 1496659520}
   lifeText: {fileID: 335499252}
   panelBtns: {fileID: 225207532}
+  player: {fileID: 1140071913}
+  ball: {fileID: 824331265}
 --- !u!1001 &1805008744
 PrefabInstance:
   m_ObjectHideFlags: 0

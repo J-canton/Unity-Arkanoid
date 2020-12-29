@@ -1,10 +1,8 @@
 ﻿using UnityEngine;
 
 public class PlayerController : MonoBehaviour{
-    private static Rigidbody2D _player;
-    private static Vector2 initPlayerPosition = new Vector2(0, -32);
+    private Rigidbody2D _player;
     private float _hInput;
-
     public float speed = 150.0f;
 
     void Awake()
@@ -28,10 +26,5 @@ public class PlayerController : MonoBehaviour{
         {
            _player.velocity = Vector2.right * _hInput * speed;
         }
-    }
-
-    public static void InitPositionPlayer()
-    {
-        _player.transform.position = initPlayerPosition;
     }
 }

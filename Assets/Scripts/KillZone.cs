@@ -10,7 +10,6 @@ public class KillZone : MonoBehaviour
     {
         GetComponent<AudioSource>().Play();
         GameManager.gameManagerInstance.UpdateState(GameManager.GameState.lostLife);
-        BallController.HideBall();
         GameManager.gameManagerInstance.UpdateLifes(GameStats.Lifes - _lifeLostValue);
     }
 }

@@ -1,7 +1,9 @@
 ﻿<Properties StartupConfiguration="{2194B913-A83D-7162-538B-103EE6ED2AD2}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Controllers/LevelController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/KillZone.cs">
     <Files>
-      <File FileName="Assets/Scripts/Controllers/LevelController.cs" Line="1" Column="19" />
+      <File FileName="Assets/Scripts/Controllers/LevelController.cs" Line="63" Column="36" />
+      <File FileName="Assets/Scripts/Controllers/BallController.cs" Line="11" Column="45" />
+      <File FileName="Assets/Scripts/KillZone.cs" Line="11" Column="44" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -9,9 +11,8 @@
           <Node name="Arkanoid" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True">
-                <Node name="Controllers" expanded="True">
-                  <Node name="LevelController.cs" selected="True" />
-                </Node>
+                <Node name="Controllers" expanded="True" />
+                <Node name="KillZone.cs" selected="True" />
               </Node>
             </Node>
           </Node>
@@ -21,7 +22,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="c127e00c-6f18-4e7d-8a79-df7993d73b8e" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="a6228932-7fea-4e4a-991c-de6789fae0ca" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

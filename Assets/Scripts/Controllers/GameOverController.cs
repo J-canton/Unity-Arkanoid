@@ -9,7 +9,12 @@ public class GameOverController : MonoBehaviour
     void Start()
     {
         GetComponent<AudioSource>().Play();
+        UIManager.UpdateText(highScoreText, "HIGH SCORE: ", GameStats.HighScore);
+        UIManager.UpdateText(scoreText, "SCORE: ", GameStats.Score);
+    }
 
+    private void OnDestroy()
+    {
         if (GameManager.gameManagerInstance.CheckIsHighScore())
         {
             GameManager.gameManagerInstance.UpdateHighScore(GameStats.Score);
@@ -19,7 +24,6 @@ public class GameOverController : MonoBehaviour
         {
             PrintHighScore(GameStats.HighScore);
         }
-        UIManager.UpdateText(scoreText, "SCORE: ", GameStats.Score);
     }
 
 

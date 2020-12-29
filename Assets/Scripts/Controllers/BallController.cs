@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class BallController : MonoBehaviour{
     public float speed = 100.0f;
-    public  GameObject ballObject;
-    public static GameObject ballStatic;
-    private static Rigidbody2D _ball;
-    private static Vector2 _initialBallPosition = new Vector2(0, -27);
+    private Rigidbody2D _ball;
 
     void Awake()
     {
         _ball = GetComponent<Rigidbody2D>();
-        ballStatic = ballObject;
     }
 
     void Start(){
@@ -51,23 +47,4 @@ public class BallController : MonoBehaviour{
     float HitFactor(Vector2 ballPos, Vector2 playerPos, float playerWidth){
         return (ballPos.x - playerPos.x) /playerWidth;
     }
-
-    /// <summary>
-    /// Init position ball
-    /// </summary>
-    public static void InitBallPosition()
-    {
-        _ball.transform.position = _initialBallPosition;
-    }
-
-    public static void HideBall()
-    {
-        ballStatic.SetActive(false);
-    }
-
-    public static void ShowBall()
-    {
-        ballStatic.SetActive(true);
-    }
-
 }
